@@ -22,9 +22,17 @@
     2. "target": "es6"
 
 4. Folder Structure:
-    1. - env
-    2. - reports
-    3. - src
+    1. config
+        - mapping
+            - json files
+        - host.json
+        - pages.json
+    2. - env
+        - commonEnv
+    3. - reports
+        - video
+        - screenshots for failure
+    4. - src
             - step-definitions
                 - assertions
                 - setup
@@ -32,14 +40,22 @@
                     - world
             - features
             - env
+                - global
+                - parseEnv
             - reporter
+                - cucumber-reporter
+            - support
+                - navigation-behaviour
+                - html-behaviour
+                - wait-for-behaviour
+                - web-element-helper
             - index.ts
-    4. .babelrc
-    5. cucumber.js
-    6. run_tests.sh
-    7. tsconfig.json
-    8. package.json
-    9. ReadMe file
+    5. .babelrc
+    6. cucumber.js
+    7. run_tests.sh
+    8. tsconfig.json
+    9. package.json
+    10. ReadMe file
 
 5. To link Cucumber features and Steps:
     1. Install the gherkin full support plugin within VSCODE
@@ -59,4 +75,12 @@
         "cucumber:regression" : "cucumber-js src/features/**/*.feature --tags @regression --require-module ts-node/register --require src/step-definitions/**/**/*.ts"
     }
 
-8. 
+8. To move the project from Yarn to npm
+    - Replace "cucumber": "COMMON_CONFIG_FILE=env/common.env yarn cucumber-compile", with "cucumber": npm run transpile && cucumber.js in the package.json
+    - And remove "cucumber-compile": "yarn transpile && cucumber-js", from package.json file
+    - add COMMON_CONFIG_FILE=env/common.env into "run_test.sh" file as export COMMON_CONFIG_FILE=env/common.env then remove this from package.json whereever used
+    - replace yarn run cucumber --profile $tag || yarn run postcucumber with npm run cucumber -- --profile $tag || npm run postcucumber in the "run_tests.sh" file
+    - use rm -rf node-modules -  to remove the node-modules when you need to move from yarn to npm package manager
+    - then use:
+        - npm install
+    
