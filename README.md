@@ -15,16 +15,31 @@
     8. yarn add cucumber-html-reporter
     9. yarn add @babel/cli -D
     10. yarn add @babel/preset-env -D
+    11. yarn add dotenv -D
     
 3. tsconfig.json updates
     1. "noImplicitAny": false, to disable error that can be showed up when we use tools that are not integrated with TypeScript completely, example Cucumber.
+    2. "target": "es6"
 
 4. Folder Structure:
-    1. - src
-            - assertions
-            - hooks
+    1. - env
+    2. - reports
+    3. - src
             - step-definitions
+                - assertions
+                - setup
+                    - hooks
+                    - world
             - features
+            - env
+            - reporter
+            - index.ts
+    4. .babelrc
+    5. cucumber.js
+    6. run_tests.sh
+    7. tsconfig.json
+    8. package.json
+    9. ReadMe file
 
 5. To link Cucumber features and Steps:
     1. Install the gherkin full support plugin within VSCODE
